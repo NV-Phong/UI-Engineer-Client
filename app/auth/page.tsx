@@ -75,7 +75,6 @@ export default function Auth() {
 
    return (
       <div className="h-screen">
-         <Header />
          <div className="flex items-center justify-center mt-[75px]">
             {/* <Meteors number={30} /> */}
             <Tabs defaultValue="login" className="w-[400px]">
@@ -258,7 +257,6 @@ export default function Auth() {
                </TabsContent>
             </Tabs>
          </div>
-         <Footer />
       </div>
    );
 }
