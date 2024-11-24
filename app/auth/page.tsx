@@ -17,6 +17,8 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 // import { checkTokenAndRedirect, login, handleCancel } from "@/services/Auth-Service";
 
 export default function Auth() {
@@ -73,6 +75,7 @@ export default function Auth() {
 
    return (
       <div className="h-screen">
+         <Header />
          <div className="flex items-center justify-center mt-[75px]">
             {/* <Meteors number={30} /> */}
             <Tabs defaultValue="login" className="w-[400px]">
@@ -255,6 +258,7 @@ export default function Auth() {
                </TabsContent>
             </Tabs>
          </div>
+         <Footer />
       </div>
    );
 }
