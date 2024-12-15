@@ -23,6 +23,7 @@ import {
    register,
 } from "@/services/Auth-Service";
 import axios from "axios";
+import Header from "@/components/layout/Header";
 
 export default function Auth() {
    const [username, setuserName] = useState("");
@@ -60,7 +61,7 @@ export default function Auth() {
                description: "Let go! to unleash your dreams.",
                action: <ToastAction altText="Ok">Ok</ToastAction>,
             });
-            router.push("/");
+            router.push("/dashboard");
          }
       } catch (error: any) {
          if (error.response?.status === 401) {
@@ -145,6 +146,7 @@ export default function Auth() {
 
    return (
       <div className="h-screen">
+         <Header />
          <div className="flex items-center justify-center mt-[75px]">
             <Tabs defaultValue="login" className="w-[400px]">
                <TabsList className="grid w-full grid-cols-2">

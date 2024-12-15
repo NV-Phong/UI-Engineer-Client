@@ -27,6 +27,6 @@ export const register = async (
 export const checkTokenAndRedirect = (router: any) => {
    const token = Cookies.get("access_token");
    if (token) {
-      router.push("/");
+      router.push("/dashboard");
    }
 };
