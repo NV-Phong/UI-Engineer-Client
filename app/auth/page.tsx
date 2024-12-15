@@ -21,7 +21,7 @@ import {
    checkTokenAndRedirect,
    login,
    register,
-} from "@/services/Auth-Service";
+} from "@/services/auth-service";
 import axios from "axios";
 import Header from "@/components/layout/Header";
 
