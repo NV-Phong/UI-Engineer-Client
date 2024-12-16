@@ -1,6 +1,7 @@
 "use client";
 
-import GetTeams from "@/services/apis/test-api";
+import GetTeams from "@/hooks/workspace/team/get-team";
+
 
 const Dashboard = () => {
    const { data, loading, error } = GetTeams();

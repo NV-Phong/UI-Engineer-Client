@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import axiosInstance from "@/services/auth-service";
 import { useToast } from "@/hooks/use-toast";
@@ -17,14 +17,12 @@ const GetTeams = () => {
                `${process.env.NEXT_PUBLIC_API_URL}/workspace/team`
             );
 
-
             toast({
                variant: "default",
                title: "Get Teams Successfully",
                description: "Let go! to unleash your dreams.",
                action: <ToastAction altText="Ok">Ok</ToastAction>,
             });
-            
 
             setData(response.data);
          } catch (err: any) {

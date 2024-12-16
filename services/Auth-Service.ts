@@ -94,7 +94,6 @@ const refreshAccessToken = async (refreshToken: string): Promise<string> => {
    }
 };
 
-// Interceptor Axios để tự động xử lý refresh token khi hết hạn
 axios.interceptors.request.use(
    (config) => {
       const token = Cookies.get("access_token");
@@ -113,7 +112,6 @@ axios.interceptors.response.use(
    async (error) => {
       const originalRequest = error.config;
 
-      // Xử lý lỗi 401 (Unauthorized) và chỉ retry nếu chưa được retry
       if (error.response?.status === 401 && !originalRequest._retry) {
          originalRequest._retry = true; // Đánh dấu request này đã được retry
          const refreshToken = Cookies.get("refresh_token");
