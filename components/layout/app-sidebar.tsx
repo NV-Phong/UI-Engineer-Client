@@ -1,6 +1,5 @@
-"use client"
-
-import * as React from "react"
+'use client'
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -12,7 +11,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -20,145 +19,89 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { TeamSwitcher } from "./team-switcher"
-import { NavMain } from "./nav-main"
-import { NavProjects } from "./nav-projects"
-import { NavUser } from "./nav-user"
+} from "@/components/ui/sidebar";
+import { TeamSwitcher } from "./team-switcher";
+import { NavMain } from "./nav-main";
+import { NavProjects } from "./nav-projects";
+import { NavUser } from "./nav-user";
+import useGetTeams from "@/hooks/workspace/team/get-team";
 
-// This is sample data.
-const data = {
-  user: {
-     name: "NV-Phong",
-     email: "nvphong@gmail.com",
-     avatar: "/The Girl [ 3 ].jpg",
-  },
-  teams: [
-     {
-        name: "UI Engineer",
-        logo: AudioWaveform,
-        plan: "UI / UX",
-     },
-     {
-        name: "HealthCare",
-        logo: GalleryVerticalEnd,
-        plan: "UI / UX",
-     },
-     {
-        name: "Task Manager",
-        logo: Command,
-        plan: "UI / UX",
-     },
-  ],
-  navMain: [
-     {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: teams, loading, error } = useGetTeams();
+
+  const data = {
+    user: {
+      name: "NV-Phong",
+      email: "nvphong@gmail.com",
+      avatar: "/The Girl [ 3 ].jpg",
+    },
+    teams: teams?.map((team) => ({
+      name: team.teamName, // Thay teamName từ API vào name
+      logo: AudioWaveform, // Tạm thời giữ logo như cũ, có thể thay đổi nếu cần
+      plan: "UI / UX",     // Kế hoạch giữ nguyên hoặc thay thế nếu cần thông tin khác
+    })) || [],
+    navMain: [
+      {
         title: "UI Library",
         url: "#",
         icon: SquareTerminal,
         isActive: true,
         items: [
-           {
-              title: "Hexagon",
-              url: "/dashboard",
-           },
-           // {
-           //    title: "Shadcn",
-           //    url: "/dashboard",
-           // },
-           // {
-           //    title: "Magic UI",
-           //    url: "/dashboard",
-           // },
+          {
+            title: "Hexagon",
+            url: "/dashboard",
+          },
+          // { title: "Shadcn", url: "/dashboard" },
+          // { title: "Magic UI", url: "/dashboard" },
         ],
-     },
-
-     {
+      },
+      {
         title: "Lab",
         url: "#",
         icon: Bot,
         items: [
-           {
-              title: "Shadcn",
-              url: "https://ui.shadcn.com/",
-           },
-           {
-              title: "v0.dev",
-              url: "#",
-           },
-           {
-              title: "Quantum",
-              url: "#",
-           },
+          { title: "Shadcn", url: "https://ui.shadcn.com/" },
+          { title: "v0.dev", url: "#" },
+          { title: "Quantum", url: "#" },
         ],
-     },
-
-     {
+      },
+      {
         title: "Collection",
         url: "#",
         icon: BookOpen,
         items: [
-           {
-              title: "Introduction",
-              url: "#",
-           },
-           {
-              title: "Get Started",
-              url: "#",
-           },
-           {
-              title: "Tutorials",
-              url: "#",
-           },
-           {
-              title: "Changelog",
-              url: "#",
-           },
+          { title: "Introduction", url: "#" },
+          { title: "Get Started", url: "#" },
+          { title: "Tutorials", url: "#" },
+          { title: "Changelog", url: "#" },
         ],
-     },
-     {
+      },
+      {
         title: "Settings",
         url: "#",
         icon: Settings2,
         items: [
-           {
-              title: "General",
-              url: "#",
-           },
-           {
-              title: "Team",
-              url: "#",
-           },
-           {
-              title: "Billing",
-              url: "#",
-           },
-           {
-              title: "Limits",
-              url: "#",
-           },
+          { title: "General", url: "#" },
+          { title: "Team", url: "#" },
+          { title: "Billing", url: "#" },
+          { title: "Limits", url: "#" },
         ],
-     },
-  ],
-  projects: [
-     {
+      },
+    ],
+    projects: [
+      {
         name: "React Code Preview",
         url: "/test/editor",
         icon: Frame,
-     },
-     // {
-     //    name: "Sales & Marketing",
-     //    url: "#",
-     //    icon: PieChart,
-     // },
-     // {
-     //    name: "Travel",
-     //    url: "#",
-     //    icon: Map,
-     // },
-  ],
-};
+      },
+      // { name: "Sales & Marketing", url: "#", icon: PieChart },
+      // { name: "Travel", url: "#", icon: Map },
+    ],
+  };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  if (loading) return <p>Loading...</p>; // Hiển thị loading khi đang tải dữ liệu
+  if (error) return <p>Error: {error}</p>; // Hiển thị lỗi nếu có
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -173,5 +116,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
