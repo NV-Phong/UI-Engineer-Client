@@ -55,14 +55,14 @@ export const logout = async () => {
       Cookies.remove("refresh_token", { path: "/" });
 
       // Điều hướng về trang login hoặc xử lý giao diện logout
-      window.location.href = "/auth";
+      window.location.href = "/";
    } catch (error) {
       console.error("Logout error", error);
 
       // Dù có lỗi, vẫn xóa token trên client
       Cookies.remove("access_token", { path: "/" });
       Cookies.remove("refresh_token", { path: "/" });
-      window.location.href = "/login";
+      window.location.href = "/auth";
    }
 };
 
