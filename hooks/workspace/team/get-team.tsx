@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/services/auth-service";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import jwt from "jsonwebtoken";
+import Cookies from "js-cookie";
 
-// Định nghĩa kiểu dữ liệu Team
 type Team = {
    _id: string;
    teamName: string;
@@ -32,21 +33,46 @@ const useGetTeams = () => {
                `${process.env.NEXT_PUBLIC_API_URL}/workspace/team`
             );
 
-            toast({
-               variant: "default",
-               title: "Get Teams Successfully",
-               description: "Let go! to unleash your dreams.",
-               action: <ToastAction altText="Ok">Ok</ToastAction>,
-            });
+            const token = Cookies.get("access_token");
 
-            setData(response.data); // Dữ liệu được định kiểu là Team[]
+            if (token) {
+               const decoded: any = jwt.decode(token);
+
+               const username = decoded?.username;
+
+               if (username) {
+                  toast({
+                     variant: "default",
+                     title: `Wellcom Back ${username}`,
+                     description: "Let go! to unleash your dreams.",
+                     action: <ToastAction altText="Ok">Ok</ToastAction>,
+                  });
+               } else {
+                  toast({
+                     variant: "destructive",
+                     title: "Error",
+                     description: "Username is not available in the token.",
+                     action: <ToastAction altText="Retry">Retry</ToastAction>,
+                  });
+               }
+            } else {
+               toast({
+                  variant: "destructive",
+                  title: "Error",
+                  description: "No access token found.",
+                  action: <ToastAction altText="Retry">Retry</ToastAction>,
+               });
+            }
+
+            setData(response.data);
          } catch (err: any) {
             console.error("Error fetching team data", err);
             setError(err.response?.data?.message || "Unknown error occurred");
             toast({
                variant: "destructive",
                title: "Error Fetching Teams",
-               description: err.response?.data?.message || "Something went wrong",
+               description:
+                  err.response?.data?.message || "Something went wrong",
                action: <ToastAction altText="Retry">Retry</ToastAction>,
             });
          } finally {
