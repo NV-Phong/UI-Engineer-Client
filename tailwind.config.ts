@@ -35,6 +35,7 @@ export default {
          },
 
          colors: {
+            selection: "#adda78",
             background: "hsl(var(--background))",
             foreground: "hsl(var(--foreground))",
             card: {
@@ -98,5 +99,8 @@ export default {
          },
       },
    },
-   plugins: [require("tailwindcss-animate")],
+   plugins: [
+      require("tailwindcss-animate"),
+      require("tailwind-scrollbar-hide"),
+   ],
 } satisfies Config;

@@ -166,3 +166,8 @@ body {
    background-repeat: no-repeat;
    background-size: cover;
 }
+
+::selection {
+   background-color: theme('colors.selection'); /* Sử dụng màu sắc từ theme */
+   color: white;
+}
