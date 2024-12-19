@@ -25,14 +25,23 @@ import { NavMain } from "./nav-main";
 import { NavProjects } from "./nav-projects";
 import { NavUser } from "./nav-user";
 import useGetTeams from "@/hooks/workspace/team/get-team";
+import jwt from "jsonwebtoken";
+import Cookies from "js-cookie";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    const { data: teams, loading, error } = useGetTeams();
+   const token = Cookies.get("access_token");
+
+   if (token) {
+      const decoded: any = jwt.decode(token);
+      var username = decoded?.username;
+      var email = decoded?.email;
+   }
 
    const data = {
       user: {
-         name: "NV-Phong",
-         email: "nvphong@gmail.com",
+         name: username,
+         email: email,
          avatar: "/The Girl [ 3 ].jpg",
       },
       teams:
