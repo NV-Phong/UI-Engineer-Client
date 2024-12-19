@@ -1,8 +1,7 @@
-// src/components/team-switcher.tsx
-
 "use client";
 
 import * as React from "react";
+import Cookies from "js-cookie"; // Thêm import js-cookie
 import { ChevronsUpDown, Plus } from "lucide-react";
 import {
    DropdownMenu,
@@ -29,14 +28,25 @@ export function TeamSwitcher({
       name: string;
       logo: React.ElementType;
       plan: string;
+      idteam: string;
    }[];
 }) {
    const { isMobile } = useSidebar();
    const [activeTeam, setActiveTeam] = React.useState(teams[0] || null);
-   const [isDialogOpen, setDialogOpen] = React.useState(false); 
+   const [isDialogOpen, setDialogOpen] = React.useState(false);
 
    const handleCreateTeamClick = () => {
       setDialogOpen(true);
+   };
+
+   const handleTeamSelect = (team: {
+      name: string;
+      logo: React.ElementType;
+      plan: string;
+      idteam: string;
+   }) => {
+      setActiveTeam(team);
+      Cookies.set("IDTeam", team.idteam, { expires: 7 });
    };
 
    return (
@@ -78,7 +88,7 @@ export function TeamSwitcher({
                   {teams.map((team, index) => (
                      <DropdownMenuItem
                         key={team.name}
-                        onClick={() => setActiveTeam(team)}
+                        onClick={() => handleTeamSelect(team)} // Gọi hàm xử lý khi chọn team
                         className="gap-2 p-2"
                      >
                         <div className="flex size-6 items-center justify-center rounded-sm border">
@@ -96,8 +106,6 @@ export function TeamSwitcher({
                      onClick={handleCreateTeamClick}
                      className="m-0 p-0"
                   >
-                     {/* <Plus className="size-4" />
-                     Create New Team */}
                      <Button className="w-full"> Create New Team </Button>
                   </DropdownMenuItem>
                </DropdownMenuContent>
