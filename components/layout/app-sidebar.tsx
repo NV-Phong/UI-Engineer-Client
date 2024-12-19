@@ -38,7 +38,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     teams: teams?.map((team) => ({
       name: team.teamName, // Thay teamName từ API vào name
       logo: AudioWaveform, // Tạm thời giữ logo như cũ, có thể thay đổi nếu cần
-      plan: "UI / UX",     // Kế hoạch giữ nguyên hoặc thay thế nếu cần thông tin khác
+      plan: team.teamDescription,     // Kế hoạch giữ nguyên hoặc thay thế nếu cần thông tin khác
     })) || [],
     navMain: [
       {

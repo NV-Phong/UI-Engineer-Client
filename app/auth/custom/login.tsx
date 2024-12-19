@@ -30,7 +30,7 @@ export default function LoginTab() {
    return (
          <form onSubmit={handleLogin}>
             <TabsContent value="login">
-               <Card className="bg-[#F2F3F4] shadow-xl ring-1 ring-gray-900/5 backdrop-blur-lg">
+               <Card className="shadow-xl ring-1 ring-gray-900/5 backdrop-blur-lg">
                   <CardHeader>
                      <BoxReveal boxColor={"#64748B"} duration={0.3}>
                         <CardTitle className="mb-1">Login</CardTitle>
@@ -46,7 +46,6 @@ export default function LoginTab() {
                      <div className="space-y-1">
                         <Label htmlFor="username">Email or UserName</Label>
                         <Input
-                           className="bg-[#F2F3F4]"
                            value={username}
                            onChange={(event) => setUserName(event.target.value)}
                            placeholder="Enter Your UserName"
@@ -58,7 +57,6 @@ export default function LoginTab() {
                            type="password"
                            value={password}
                            onChange={(event) => setPassword(event.target.value)}
-                           className="bg-[#F2F3F4]"
                            placeholder="Enter Your Password"
                         />
                      </div>
@@ -73,7 +71,7 @@ export default function LoginTab() {
                         <button
                            type="button"
                            onClick={handleGithubLogin}
-                           className="bg-[#F2F3F4] inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                           className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
                         >
                            <svg
                               viewBox="0 0 438.549 438.549"
@@ -88,7 +86,7 @@ export default function LoginTab() {
                         </button>
                         <button
                            // onClick={handleGoogleClick}
-                           className="bg-[#F2F3F4] inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                           className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
                         >
                            <svg
                               role="img"
@@ -106,7 +104,6 @@ export default function LoginTab() {
                   </CardContent>
                   <CardFooter className="align justify-between">
                      <Button
-                        className="bg-[#F2F3F4] "
                         variant="outline"
                         onClick={handleCancel}
                         type="button"
@@ -114,7 +111,6 @@ export default function LoginTab() {
                         Cancel
                      </Button>
                      <Button
-                        className="shadow-xl bg-slate-500"
                         type="submit"
                         disabled={isSubmitting}
                      >

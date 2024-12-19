@@ -31,7 +31,7 @@ export default function RegisterTab() {
    return (
       <form onSubmit={handleRegister}>
          <TabsContent value="register">
-            <Card className="bg-[#F2F3F4] shadow-xl ring-1 ring-gray-900/5 backdrop-blur-lg">
+            <Card className="shadow-xl ring-1 ring-gray-900/5 backdrop-blur-lg">
                <CardHeader>
                   <BoxReveal boxColor={"#64748B"} duration={0.3}>
                      <CardTitle className="mb-1">Register</CardTitle>
@@ -46,7 +46,6 @@ export default function RegisterTab() {
                   <div className="space-y-1">
                      <Label htmlFor="username">UserName</Label>
                      <Input
-                        className="bg-[#F2F3F4]"
                         value={username}
                         onChange={(event) => setUserName(event.target.value)}
                         placeholder="Enter Your UserName"
@@ -55,7 +54,6 @@ export default function RegisterTab() {
                   <div className="space-y-1">
                      <Label htmlFor="email">Email</Label>
                      <Input
-                        className="bg-[#F2F3F4]"
                         type="email"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
@@ -65,7 +63,6 @@ export default function RegisterTab() {
                   <div className="space-y-1">
                      <Label htmlFor="password">Password</Label>
                      <Input
-                        className="bg-[#F2F3F4]"
                         type="password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
@@ -75,7 +72,6 @@ export default function RegisterTab() {
                   <div className="space-y-1">
                      <Label htmlFor="displayname">Display Name</Label>
                      <Input
-                        className="bg-[#F2F3F4]"
                         type="text"
                         value={displayName}
                         onChange={(event) => setDisplayName(event.target.value)}
@@ -86,14 +82,12 @@ export default function RegisterTab() {
                <CardFooter className="align justify-between">
                   <Button
                      variant="outline"
-                     className="bg-[#F2F3F4]"
                      type="button"
                      onClick={handleCancel}
                   >
                      Cancel
                   </Button>
                   <Button
-                     className="bg-slate-500 shadow-xl"
                      type="submit"
                      disabled={isSubmitting}
                   >
