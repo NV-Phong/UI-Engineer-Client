@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const tabs = ["home", "about", "project", "blog", "test", "auth"];
+const tabs = ["home", "about", "project", "blog", "dashboard", "auth"];
 
 export default function Header() {
    const [activeTab, setActiveTab] = useState("home");
