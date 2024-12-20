@@ -9,7 +9,7 @@ import {
    FaAngular,
    FaBan,
    FaTerminal,
-} from "react-icons/fa"; // Import icon từ react-icons
+} from "react-icons/fa"; // Import icons from react-icons
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -50,9 +50,13 @@ const frameworks = [
    },
 ];
 
-export function SelectStyle() {
+interface SelectStyleProps {
+   value: string;
+   onChange: (value: string) => void;
+}
+
+export function SelectStyle({ value, onChange }: SelectStyleProps) {
    const [open, setOpen] = React.useState(false);
-   const [value, setValue] = React.useState("");
 
    const selectedFramework = frameworks.find(
       (framework) => framework.value === value
@@ -90,7 +94,7 @@ export function SelectStyle() {
                            value={framework.value}
                            onSelect={(currentValue) => {
                               if (!framework.disabled) {
-                                 setValue(
+                                 onChange(
                                     currentValue === value ? "" : currentValue
                                  );
                                  setOpen(false);
@@ -105,7 +109,7 @@ export function SelectStyle() {
                               <span className="flex-1">{framework.label}</span>
                               {framework.disabled && (
                                  <span className="text-xs text-[#85dacc] ml-2">
-                                    Is Comming
+                                    Is Coming
                                  </span>
                               )}
                            </span>
