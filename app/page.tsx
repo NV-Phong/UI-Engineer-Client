@@ -1,6 +1,4 @@
 "use client";
-import { DialogDemo } from "@/components/form/create-team";
-import Header from "@/components/layout/header";
 import Particles from "@/components/ui/particles";
 import { Spotlight } from "@/components/ui/spotlight";
 import { useTheme } from "next-themes";

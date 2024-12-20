@@ -1,4 +1,6 @@
+import { TechStack } from "@/components/custom/tech-stack";
 import WhiteRainbowButton from "@/components/custom/white-rainbow-button";
+import { CreateUILibraryPopover } from "@/components/form/create-uilibrary";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import {
    Breadcrumb,
@@ -6,31 +8,21 @@ import {
    BreadcrumbLink,
    BreadcrumbList,
    BreadcrumbPage,
-   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import {
-   Card,
-   CardContent,
-   CardDescription,
-   CardFooter,
-   CardHeader,
-   CardTitle,
-} from "@/components/ui/card";
 import {
    DropdownMenu,
    DropdownMenuContent,
    DropdownMenuItem,
-   DropdownMenuSeparator,
    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-   Pagination,
-   PaginationContent,
-   PaginationItem,
-} from "@/components/ui/pagination";
+   Popover,
+   PopoverContent,
+   PopoverTrigger,
+} from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import {
    SidebarInset,
@@ -38,15 +30,7 @@ import {
    SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-   ChevronDown,
-   Copy,
-   CreditCard,
-   MoreVertical,
-   Truck,
-} from "lucide-react";
-import IconGrid from "../test/isocon/icon-grid";
-import IconCustomizer from "../test/isocon/icon-customizer";
+import { ChevronDown } from "lucide-react";
 
 export default function Dashboard() {
    return (
@@ -62,7 +46,7 @@ export default function Dashboard() {
                         <BreadcrumbItem className="flex items-center justify-between">
                            <BreadcrumbLink href="#">
                               <Label className="text-lg mr-10">
-                                 Hexagon Library
+                                 UI Library
                               </Label>
                            </BreadcrumbLink>
                            <div className="flex">
@@ -102,9 +86,9 @@ export default function Dashboard() {
 
                         <BreadcrumbItem>
                            <BreadcrumbPage>
-                              <WhiteRainbowButton href="/dashboard">
-                                 Add Component
-                              </WhiteRainbowButton>
+                              
+                              <CreateUILibraryPopover/>
+
                            </BreadcrumbPage>
                         </BreadcrumbItem>
                      </BreadcrumbList>
@@ -116,14 +100,12 @@ export default function Dashboard() {
                   <div className="aspect-video rounded-xl bg-muted/20 w-full md:col-span-7">
                      <Tabs defaultValue="ui-actions" className="m-3">
                         <TabsList>
-                           <TabsTrigger value="ui-actions">
-                              All
-                           </TabsTrigger>
+                           <TabsTrigger value="ui-actions">All</TabsTrigger>
                            <TabsTrigger value="devices">Create</TabsTrigger>
                            <TabsTrigger value="shapes">Collection</TabsTrigger>
                         </TabsList>
                         <TabsContent value="ui-actions">
-                           <IconGrid />
+                           {/* <IconGrid /> */}
                         </TabsContent>
                         <TabsContent value="devices">
                            Device icons content
@@ -134,111 +116,7 @@ export default function Dashboard() {
                      </Tabs>
                   </div>
 
-                  <div className="aspect-video rounded-xl bg-muted/50 md:col-span-3">
-                     <Card
-                        className="overflow-hidden"
-                        x-chunk="dashboard-05-chunk-4"
-                     >
-                        <CardHeader className="flex flex-row items-start bg-muted/50">
-                           <div className="grid gap-0.5">
-                              <CardTitle className="group flex items-center gap-2 text-lg">
-                                 Component Infomation
-                                 <Button
-                                    size="icon"
-                                    variant="outline"
-                                    className="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
-                                 >
-                                    <Copy className="h-3 w-3" />
-                                    <span className="sr-only">
-                                       Copy Order ID
-                                    </span>
-                                 </Button>
-                              </CardTitle>
-                              <CardDescription>
-                                 Library : UI Engineer
-                              </CardDescription>
-                           </div>
-                           <div className="ml-auto flex items-center gap-1">
-                              {/* <Button
-                                 size="sm"
-                                 variant="outline"
-                                 className="h-8 gap-1"
-                              >
-                                 <Truck className="h-3.5 w-3.5" />
-                                 <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-                                    Track Order
-                                 </span>
-                              </Button> */}
-                              <DropdownMenu>
-                                 <DropdownMenuTrigger asChild>
-                                    <Button
-                                       size="icon"
-                                       variant="outline"
-                                       className="h-8 w-8"
-                                    >
-                                       <MoreVertical className="h-3.5 w-3.5" />
-                                       <span className="sr-only">More</span>
-                                    </Button>
-                                 </DropdownMenuTrigger>
-                                 <DropdownMenuContent align="end">
-                                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                                    <DropdownMenuItem>Export</DropdownMenuItem>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Trash</DropdownMenuItem>
-                                 </DropdownMenuContent>
-                              </DropdownMenu>
-                           </div>
-                        </CardHeader>
-                        <CardContent className="p-6 text-sm">
-                           <div className="grid gap-3">
-                              {/* <div className="font-semibold">Order Details</div> */}
-
-                              <IconCustomizer></IconCustomizer>
-                              <Separator className="my-2" />
-                              <ul className="grid gap-3"></ul>
-                           </div>
-                           <div className="grid gap-3">
-                              <div className="font-semibold">Authors</div>
-                              <dl className="grid gap-3">
-                                 <div className="flex items-center justify-between">
-                                    <dt className="text-muted-foreground">
-                                       NV-Phong
-                                    </dt>
-                                    {/* <dd>NV-Phong</dd> */}
-                                 </div>
-                              </dl>
-                           </div>
-                           <Separator className="my-4" />
-                           <div className="grid gap-3">
-                              <div className="font-semibold">Install</div>
-                              <dl className="grid gap-3">
-                                 <div className="flex items-center justify-between">
-                                    <dt className="flex items-center gap-1 text-muted-foreground">
-                                       <CreditCard className="h-4 w-4" />
-                                       npm
-                                    </dt>
-                                    <dd>npx ui-engineer add button</dd>
-                                 </div>
-                              </dl>
-                           </div>
-                        </CardContent>
-                        <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
-                           <div className="text-xs text-muted-foreground">
-                              Updated{" "}
-                              <time dateTime="2024-11-11">
-                                 November 11, 2024
-                              </time>
-                           </div>
-                           <Pagination className="ml-auto mr-0 w-auto">
-                              <PaginationContent>
-                                 <PaginationItem>
-                                    {/* <Payment/> */}
-                                 </PaginationItem>
-                              </PaginationContent>
-                           </Pagination>
-                        </CardFooter>
-                     </Card>
-                  </div>
+                  <div className="aspect-video rounded-xl bg-muted/50 md:col-span-3"></div>
                </div>
 
                <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
