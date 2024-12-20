@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,16 +11,37 @@ import WhiteRainbowButton from "../custom/white-rainbow-button";
 import { TechStack } from "../custom/tech-stack";
 import { Textarea } from "../ui/textarea";
 import { SelectStyle } from "../custom/select-style";
+import usePostUILibrary from "@/hooks/workspace/uilibrary/post-uilibrary";
 
 export function CreateUILibraryPopover() {
+   const {
+      postUILibrary,
+      loading,
+      error,
+      uiLibraryName,
+      uiLibraryDescription,
+      style,
+      IDtechStacks,
+      setUiLibraryName,
+      setUiLibraryDescription,
+      setStyle,
+      setIDtechStacks,
+   } = usePostUILibrary();
+
+   const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      try {
+         await postUILibrary();
+      } catch (err) {}
+   };
+
    return (
       <Popover>
          <PopoverTrigger asChild>
-            {/* <Button variant="outline">Open popover</Button> */}
-            <WhiteRainbowButton>Create UI Library</WhiteRainbowButton>
+            <Button variant="outline">Create UI Library</Button>
          </PopoverTrigger>
          <PopoverContent className="w-80 mr-4">
-            <div className="grid gap-4">
+            <form onSubmit={handleSubmit} className="grid gap-4">
                <div className="space-y-2">
                   <h4 className="font-medium leading-none">
                      Create New UI Library
@@ -29,26 +51,40 @@ export function CreateUILibraryPopover() {
                   </p>
                </div>
                <div className="grid gap-3">
-                  {/* <div className="grid grid-cols-3 items-center gap-4"> */}
                   <div className="items-center gap-4">
-                     <Label htmlFor="width">Name</Label>
-                     <Input placeholder="Type name" />
+                     <Label htmlFor="name">Name</Label>
+                     <Input
+                        id="name"
+                        value={uiLibraryName}
+                        onChange={(e) => setUiLibraryName(e.target.value)}
+                        placeholder="Type name"
+                     />
                   </div>
                   <div className="items-center gap-4">
-                     <Label htmlFor="maxWidth">Description</Label>
-                     <Textarea placeholder="Type your team description" />
+                     <Label htmlFor="description">Description</Label>
+                     <Textarea
+                        id="description"
+                        value={uiLibraryDescription}
+                        onChange={(e) =>
+                           setUiLibraryDescription(e.target.value)
+                        }
+                        placeholder="Type your UI library description"
+                     />
                   </div>
                   <div className="flex flex-col gap-4">
-                     <Label htmlFor="maxHeight">FrameWork</Label>
-                     <TechStack />
+                     <Label htmlFor="techStack">Tech Stack</Label>
+                     <TechStack value={IDtechStacks} onChange={setIDtechStacks} />
                   </div>
                   <div className="flex flex-col gap-4">
-                     <Label htmlFor="maxHeight">Style</Label>
-                     <SelectStyle />
+                     <Label htmlFor="style">Style</Label>
+                     <SelectStyle value={style} onChange={setStyle} />
                   </div>
-                  <Button>Create</Button>
+                  <Button type="submit" disabled={loading}>
+                     {loading ? "Creating..." : "Create"}
+                  </Button>
                </div>
-            </div>
+               {error && <p className="text-red-500 text-sm">{error}</p>}
+            </form>
          </PopoverContent>
       </Popover>
    );

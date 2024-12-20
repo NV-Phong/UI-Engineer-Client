@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { FaReact, FaAndroid, FaVuejs, FaAngular, FaBan } from "react-icons/fa"; // Import icon từ react-icons
+import { FaReact, FaAndroid, FaVuejs, FaAngular } from "react-icons/fa"; // Import icon từ react-icons
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import {
    PopoverTrigger,
 } from "@/components/ui/popover";
 import { SiFlutter } from "react-icons/si";
+
 const frameworks = [
    {
       value: "next.js",
@@ -47,12 +48,16 @@ const frameworks = [
    },
 ];
 
-export function TechStack() {
+interface TechStackProps {
+   value: string[]; // Change value to an array of strings
+   onChange: (value: string[]) => void; // onChange still expects an array
+}
+
+export function TechStack({ value, onChange }: TechStackProps) {
    const [open, setOpen] = React.useState(false);
-   const [value, setValue] = React.useState("");
 
    const selectedFramework = frameworks.find(
-      (framework) => framework.value === value
+      (framework) => framework.value === value[0] // Use the first item in the array
    );
 
    return (
@@ -87,9 +92,7 @@ export function TechStack() {
                            value={framework.value}
                            onSelect={(currentValue) => {
                               if (!framework.disabled) {
-                                 setValue(
-                                    currentValue === value ? "" : currentValue
-                                 );
+                                 onChange([currentValue]);
                                  setOpen(false);
                               }
                            }}
@@ -102,14 +105,14 @@ export function TechStack() {
                               <span className="flex-1">{framework.label}</span>
                               {framework.disabled && (
                                  <span className="text-xs text-[#85dacc] ml-2">
-                                    Is Comming
+                                    Is Coming
                                  </span>
                               )}
                            </span>
                            <Check
                               className={cn(
                                  "ml-auto",
-                                 value === framework.value
+                                 value[0] === framework.value
                                     ? "opacity-100"
                                     : "opacity-0"
                               )}

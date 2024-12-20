@@ -11,6 +11,7 @@ type UILibrary = {
    uiLibraryName: string;
    uiLibraryDescription: string;
    isDeleted: boolean;
+   style: string;
    IDTeam: string;
    techStacks: string[];
 };

@@ -23,6 +23,7 @@ export default function Page() {
             <li key={library._id}>
               <h2>{library.uiLibraryName}</h2>
               <p>{library.uiLibraryDescription}</p>
+              <p>{library.style}</p>
               <p>
                 <strong>Tech Stacks:</strong> {library.techStacks.join(", ")}
               </p>
