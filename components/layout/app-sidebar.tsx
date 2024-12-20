@@ -71,8 +71,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             url: "#",
             icon: Bot,
             items: [
-               { title: "Shadcn", url: "https://ui.shadcn.com/" },
-               { title: "v0.dev", url: "#" },
+               { title: "Get Team", url: "/test/team" },
+               { title: "Get UI Library", url: "test/ui-library" },
                { title: "Quantum", url: "#" },
             ],
          },
