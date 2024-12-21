@@ -29,8 +29,7 @@ export default function RootLayout({
                enableSystem
                disableTransitionOnChange
             >
-               {/* <HeaderDisplay /> */}
-               {children}
+               <HeaderDisplay />
 
                <DashboardDisplay>{children}</DashboardDisplay>
                <Toaster />

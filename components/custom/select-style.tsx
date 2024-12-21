@@ -31,19 +31,19 @@ import { SiTailwindcss, SiCss3, SiBootstrap } from "react-icons/si";
 
 const frameworks = [
    {
-      value: "tailwind",
+      value: "Tailwind",
       label: "Tailwind",
       icon: <SiTailwindcss color="#38B2AC" />,
       disabled: false,
    },
    {
-      value: "css",
+      value: "CSS",
       label: "CSS",
       icon: <SiCss3 color="#1572B6" />,
       disabled: false,
    },
    {
-      value: "bootstrap",
+      value: "Bootstrap",
       label: "Bootstrap",
       icon: <SiBootstrap color="#7952B3" />,
       disabled: true,

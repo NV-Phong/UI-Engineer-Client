@@ -99,18 +99,16 @@ const DashboardDisplay = ({ children }: { children: React.ReactNode }) => {
                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                   <div className="grid gap-4 md:grid-cols-10">
                      <div className="aspect-video rounded-xl bg-muted/20 w-full md:col-span-7">
-                        <Tabs defaultValue="ui-actions" className="m-3">
+                        <Tabs defaultValue="all" className="m-3">
                            <TabsList>
-                              <TabsTrigger value="ui-actions">All</TabsTrigger>
-                              <TabsTrigger value="devices">Create</TabsTrigger>
+                              <TabsTrigger value="all">All</TabsTrigger>
+                              <TabsTrigger value="create">Create</TabsTrigger>
                               <TabsTrigger value="shapes">
                                  Collection
                               </TabsTrigger>
                            </TabsList>
-                           <TabsContent value="ui-actions">
-                              {/* <IconGrid /> */}
-                           </TabsContent>
-                           <TabsContent value="devices">
+                           <TabsContent value="all">{children}</TabsContent>
+                           <TabsContent value="create">
                               Device icons content
                            </TabsContent>
                            <TabsContent value="shapes">
@@ -118,22 +116,13 @@ const DashboardDisplay = ({ children }: { children: React.ReactNode }) => {
                            </TabsContent>
                         </Tabs>
                      </div>
-
-                     <div className="aspect-video rounded-xl bg-muted/50 md:col-span-3">
-                     
-                     {/* children in there */}
-                     {children}
-                     
-                     </div>
                   </div>
-
-                  <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
                </div>
             </SidebarInset>
          </SidebarProvider>
       );
    }
-   return null;
+   return children;
 };
 
 export default DashboardDisplay;

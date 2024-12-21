@@ -23,25 +23,25 @@ import { SiFlutter } from "react-icons/si";
 
 const frameworks = [
    {
-      value: "next.js",
+      value: "Next.JS",
       label: "Next.JS",
       icon: <FaReact color="#61DAFB" />,
       disabled: false,
    },
    {
-      value: "flutter",
+      value: "Flutter",
       label: "Flutter",
       icon: <SiFlutter color="#02569B" />,
       disabled: false,
    },
    {
-      value: "vue.js",
+      value: "Vue.JS",
       label: "Vue.JS",
       icon: <FaVuejs color="#42B883" />,
       disabled: true,
    },
    {
-      value: "angular",
+      value: "Angular",
       label: "Angular",
       icon: <FaAngular color="#DD0031" />,
       disabled: true,
