@@ -1,5 +1,6 @@
 "use client";
 
+import UploadCode from "@/components/custom/upload-code";
 import useGetComponentsByUILibrary from "@/hooks/workspace/component/get-component";
 import { useEffect, useState } from "react";
 
@@ -30,7 +31,6 @@ export default function UILibrary({
 
    return (
       <div>
-         <h1>Components for {uilibrary}</h1>
          <ul>
             {data?.map((component) => (
                <li key={component._id}>
@@ -39,6 +39,7 @@ export default function UILibrary({
                   <code>{component.code}</code>
                </li>
             ))}
+            <UploadCode/>
          </ul>
       </div>
    );
