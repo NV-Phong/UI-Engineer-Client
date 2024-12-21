@@ -1,20 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "@/services/auth-service";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import Cookies from "js-cookie";
+import { usePathname, useRouter } from "next/navigation";
 
 const usePostUILibrary = () => {
    const [loading, setLoading] = useState<boolean>(false);
    const [error, setError] = useState<string | null>(null);
    const { toast } = useToast();
+   const router = useRouter();
+   const pathname = usePathname();
 
    const [uiLibraryName, setUiLibraryName] = useState<string>("");
    const [uiLibraryDescription, setUiLibraryDescription] = useState<string>("");
    const [style, setStyle] = useState<string>("");
    const [IDtechStacks, setIDtechStacks] = useState<string[]>([]);
+
+   const resetState = () => {
+      setUiLibraryName("");
+      setUiLibraryDescription("");
+      setStyle("");
+      setIDtechStacks([]);
+   };
 
    const postUILibrary = async () => {
       setLoading(true);
@@ -47,6 +57,13 @@ const usePostUILibrary = () => {
             description: "Your UI library has been successfully created.",
             action: <ToastAction altText="Ok">Ok</ToastAction>,
          });
+
+         const formattedName = uiLibraryName.toLowerCase().replace(/\s+/g, "-");
+
+         router.push(`/dashboard/ui-library/${formattedName}`);
+         
+         // Reset the state values
+         resetState();
 
          return response.data;
       } catch (err: any) {

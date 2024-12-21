@@ -48,31 +48,31 @@ export function CreateTeamDialog({
       <Dialog open={isOpen} onOpenChange={handleCloseDialog}>
          <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-               <DialogTitle>Create New Team</DialogTitle>
+               <DialogTitle>Create New Collection</DialogTitle>
                <DialogDescription>
-                  Create new teams to collaborate easily.
+                  Create new collection to collaborate easily.
                </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-               <div className="grid grid-cols-4 items-center gap-4">
+               <div className="items-center gap-4">
                   <Label htmlFor="name" className="text-right">
-                     Team Name
+                     Collection Name
                   </Label>
                   <Input
                      id="name"
-                     placeholder="Enter your team name"
+                     placeholder="Enter your collection name"
                      className="col-span-3"
                      value={teamName}
                      onChange={(e) => setTeamName(e.target.value)}
                   />
                </div>
-               <div className="grid grid-cols-4 items-center gap-4">
+               <div className="items-center gap-4">
                   <Label htmlFor="description" className="text-right">
                      Description
                   </Label>
                   <Textarea
                      id="description"
-                     placeholder="Type your team description"
+                     placeholder="Type your collection description"
                      className="col-span-3"
                      value={teamDescription}
                      onChange={(e) => setTeamDescription(e.target.value)}

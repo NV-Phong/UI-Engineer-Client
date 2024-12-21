@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import Cookies from "js-cookie"; // Thêm import js-cookie
 import { ChevronsUpDown, Plus } from "lucide-react";
@@ -20,6 +18,7 @@ import {
 } from "@/components/ui/sidebar";
 import { CreateTeamDialog } from "../form/create-team";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 export function TeamSwitcher({
    teams,
@@ -32,8 +31,27 @@ export function TeamSwitcher({
    }[];
 }) {
    const { isMobile } = useSidebar();
-   const [activeTeam, setActiveTeam] = React.useState(teams[0] || null);
+   const [activeTeam, setActiveTeam] = React.useState<{
+      name: string;
+      logo: React.ElementType;
+      plan: string;
+      idteam: string;
+   } | null>(null);
    const [isDialogOpen, setDialogOpen] = React.useState(false);
+   const router = useRouter();
+
+   // Khi component được mount, lấy thông tin team từ Cookies
+   React.useEffect(() => {
+      const storedTeamId = Cookies.get("IDTeam");
+      if (storedTeamId) {
+         const storedTeam = teams.find((team) => team.idteam === storedTeamId);
+         if (storedTeam) {
+            setActiveTeam(storedTeam);
+         }
+      } else {
+         setActiveTeam(teams[0] || null); // Mặc định chọn team đầu tiên nếu không có trong Cookies
+      }
+   }, [teams]);
 
    const handleCreateTeamClick = () => {
       setDialogOpen(true);
@@ -47,6 +65,11 @@ export function TeamSwitcher({
    }) => {
       setActiveTeam(team);
       Cookies.set("IDTeam", team.idteam, { expires: 7 });
+
+      // router.refresh();
+      // window.location.reload();
+      const formattedName = team.name.toLowerCase().replace(/\s+/g, "-");
+      router.push(`/dashboard/collection/${formattedName}`);
    };
 
    return (
@@ -88,7 +111,7 @@ export function TeamSwitcher({
                   {teams.map((team, index) => (
                      <DropdownMenuItem
                         key={team.name}
-                        onClick={() => handleTeamSelect(team)} // Gọi hàm xử lý khi chọn team
+                        onClick={() => handleTeamSelect(team)}
                         className="gap-2 p-2"
                      >
                         <div className="flex size-6 items-center justify-center rounded-sm border">
@@ -106,7 +129,7 @@ export function TeamSwitcher({
                      onClick={handleCreateTeamClick}
                      className="m-0 p-0"
                   >
-                     <Button className="w-full"> Create New Team </Button>
+                     <Button className="w-full"> Create New Collection </Button>
                   </DropdownMenuItem>
                </DropdownMenuContent>
             </DropdownMenu>

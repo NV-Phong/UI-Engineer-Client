@@ -12,6 +12,7 @@ import { TechStack } from "../custom/tech-stack";
 import { Textarea } from "../ui/textarea";
 import { SelectStyle } from "../custom/select-style";
 import usePostUILibrary from "@/hooks/workspace/uilibrary/post-uilibrary";
+import { usePathname, useRouter } from "next/navigation";
 
 export function CreateUILibraryPopover() {
    const {
@@ -27,12 +28,13 @@ export function CreateUILibraryPopover() {
       setStyle,
       setIDtechStacks,
    } = usePostUILibrary();
-
+   const router = useRouter();
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       try {
          await postUILibrary();
       } catch (err) {}
+
    };
 
    return (
@@ -73,7 +75,10 @@ export function CreateUILibraryPopover() {
                   </div>
                   <div className="flex flex-col gap-4">
                      <Label htmlFor="techStack">Tech Stack</Label>
-                     <TechStack value={IDtechStacks} onChange={setIDtechStacks} />
+                     <TechStack
+                        value={IDtechStacks}
+                        onChange={setIDtechStacks}
+                     />
                   </div>
                   <div className="flex flex-col gap-4">
                      <Label htmlFor="style">Style</Label>

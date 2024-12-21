@@ -1,7 +1,7 @@
-"use client"; // Đánh dấu component này là client-side
+"use client";
 
 import { usePathname } from "next/navigation";
-import Header from "@/components/layout/header";
+import Header from "../layout/header";
 
 const HeaderDisplay = () => {
    const pathname = usePathname();

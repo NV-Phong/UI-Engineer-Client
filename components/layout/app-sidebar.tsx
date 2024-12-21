@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
    AudioWaveform,
@@ -20,16 +19,18 @@ import {
    SidebarHeader,
    SidebarRail,
 } from "@/components/ui/sidebar";
-import { TeamSwitcher } from "./team-switcher";
 import { NavMain } from "./nav-main";
 import { NavProjects } from "./nav-projects";
 import { NavUser } from "./nav-user";
 import useGetTeams from "@/hooks/workspace/team/get-team";
 import jwt from "jsonwebtoken";
 import Cookies from "js-cookie";
+import useGetUILibrary from "@/hooks/workspace/uilibrary/get-uilibrary";
+import { TeamSwitcher } from "./team-switcher";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-   const { data: teams, loading, error } = useGetTeams();
+   const { data: teams, loading: teamsLoading, error: teamsError } = useGetTeams();
+   const { data: uiLibraries, loading: librariesLoading, error: librariesError } = useGetUILibrary();
    const token = Cookies.get("access_token");
 
    if (token) {
@@ -57,14 +58,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             url: "#",
             icon: SquareTerminal,
             isActive: true,
-            items: [
-               {
-                  title: "Hexagon",
-                  url: "/dashboard",
-               },
-               // { title: "Shadcn", url: "/dashboard" },
-               // { title: "Magic UI", url: "/dashboard" },
-            ],
+            items: uiLibraries
+               ? uiLibraries.map((lib) => ({
+                    title: lib.uiLibraryName,
+                    url: `/dashboard/${lib.uiLibraryName.replace(/\s+/g, "-").toLowerCase()}`,
+                 }))
+               : [],
          },
          {
             title: "Lab",
@@ -111,8 +110,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       ],
    };
 
-   if (loading) return <p>Loading...</p>;
-   if (error) return <p>Error: {error}</p>;
+   if (teamsLoading || librariesLoading) return <p>Loading...</p>;
+   if (teamsError || librariesError)
+      return <p>Error: {teamsError || librariesError}</p>;
 
    return (
       <Sidebar collapsible="icon" {...props}>
