@@ -29,8 +29,16 @@ import useGetUILibrary from "@/hooks/workspace/uilibrary/get-uilibrary";
 import { TeamSwitcher } from "./team-switcher";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-   const { data: teams, loading: teamsLoading, error: teamsError } = useGetTeams();
-   const { data: uiLibraries, loading: librariesLoading, error: librariesError } = useGetUILibrary();
+   const {
+      data: teams,
+      loading: teamsLoading,
+      error: teamsError,
+   } = useGetTeams();
+   const {
+      data: uiLibraries,
+      loading: librariesLoading,
+      error: librariesError,
+   } = useGetUILibrary();
    const token = Cookies.get("access_token");
 
    if (token) {
@@ -61,7 +69,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             items: uiLibraries
                ? uiLibraries.map((lib) => ({
                     title: lib.uiLibraryName,
-                    url: `/dashboard/${lib.uiLibraryName.replace(/\s+/g, "-").toLowerCase()}`,
+                    url: `/dashboard/${lib.uiLibraryName
+                       .replace(/\s+/g, "-")
+                       .toLowerCase()}`,
                  }))
                : [],
          },
@@ -76,14 +86,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             ],
          },
          {
-            title: "Collection",
+            title: "Idea",
             url: "#",
             icon: BookOpen,
             items: [
-               { title: "Introduction", url: "#" },
-               { title: "Get Started", url: "#" },
-               { title: "Tutorials", url: "#" },
-               { title: "Changelog", url: "#" },
+               { title: "Figma", url: "/dashboard/idea/figma" },
+               { title: "Graphics", url: "/dashboard/idea/graphics" },
+               { title: "Web Link", url: "/dashboard/idea/web-link" },
             ],
          },
          {
