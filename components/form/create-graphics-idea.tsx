@@ -14,14 +14,22 @@ import { SelectStyle } from "../custom/select-style";
 import { useRouter } from "next/navigation";
 import useCreateIdea from "@/hooks/workspace/idea/post-idea";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { FileUpload } from "../ui/file-upload";
 
-export function CreateIdeaPopover() {
+export function CreateIdeaGraphicsPopover() {
    const router = useRouter();
-   const pathname = usePathname();  // Get the full URL path
-   const searchParams = useSearchParams();  // Get search parameters from the URL
+   const pathname = usePathname(); // Get the full URL path
+   const searchParams = useSearchParams();
+
+   const [files, setFiles] = useState<File[]>([]);
+   const handleFileUpload = (files: File[]) => {
+      setFiles(files);
+      console.log(files);
+   };
 
    // Extract 'ideaType' from the pathname, assuming it's the last part of the URL
-   const pathParts = pathname.split('/');
+   const pathParts = pathname.split("/");
    const ideaType = pathParts[pathParts.length - 1]; // e.g., 'figma' from /dashboard/idea/figma
 
    const {
@@ -50,12 +58,10 @@ export function CreateIdeaPopover() {
          <PopoverTrigger asChild>
             <Button variant="outline">Create Idea</Button>
          </PopoverTrigger>
-         <PopoverContent className="w-80 ml-52">
+         <PopoverContent side="left" align="center" className="w-80 ml-2 mt-32 overflow-y-auto max-h-[650px] scrollbar-hide">
             <form onSubmit={handleSubmit} className="grid gap-4">
                <div className="space-y-2">
-                  <h4 className="font-medium leading-none">
-                     Create New Idea
-                  </h4>
+                  <h4 className="font-medium leading-none">Create New Idea</h4>
                   <p className="text-sm text-muted-foreground">
                      Create to manage your ideas
                   </p>
@@ -84,18 +90,13 @@ export function CreateIdeaPopover() {
                      <Input
                         id="type"
                         value={ideaType}
-                        readOnly  // Make the ideaType input field read-only
+                        readOnly
                         placeholder="Type of idea"
                      />
                   </div>
                   <div className="items-center gap-4">
-                     <Label htmlFor="url">Embed Code</Label>
-                     <Input
-                        id="url"
-                        value={ideaURL}
-                        onChange={(e) => setIdeaURL(e.target.value)}
-                        placeholder="Type idea URL"
-                     />
+                     <Label htmlFor="url">Upload Graphics</Label>
+                     <FileUpload onChange={handleFileUpload} />
                   </div>
                   <div className="items-center gap-4 hidden">
                      <Label htmlFor="image">Image</Label>

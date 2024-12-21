@@ -1,5 +1,6 @@
 "use client";
-import { CreateIdeaPopover } from "@/components/form/create-idea";
+
+import { CreateIdeaFigmaPopover } from "@/components/form/create-figma-idea";
 import { Button } from "@/components/ui/button";
 import {
    Card,
@@ -33,39 +34,41 @@ export default function Figma() {
    return (
       <div className="container mx-auto p-4">
          <div className="mb-6 flex justify-between items-center">
-            <CreateIdeaPopover />
+            <CreateIdeaFigmaPopover />
          </div>
          {data && data.length > 0 ? (
             <div className="flex gap-4 overflow-x-auto scrollbar-hide">
-               {data.map((idea) => (
-                  <Card
-                     key={idea._id}
-                     className="shadow-lg hover:shadow-2xl transition-all min-w-[850px] mb-5"
-                  >
-                     <CardHeader>
-                        <CardTitle className="text-xl font-bold">
-                           {idea.ideaName}
-                        </CardTitle>
-                        <CardDescription className="text-sm text-gray-600">
-                           {idea.ideaDescription}
-                        </CardDescription>
-                     </CardHeader>
-                     {idea.ideaURL && (
-                        <CardContent>
-                           <div
-                              className="text-blue-500 underline"
-                              dangerouslySetInnerHTML={{
-                                 __html: `${idea.ideaURL}`,
-                              }}
-                           />
-                        </CardContent>
-                     )}
-                  </Card>
-               ))}
+               {data
+                  .filter((idea) => idea.ideaType === "figma")
+                  .map((idea) => (
+                     <Card
+                        key={idea._id}
+                        className="shadow-lg hover:shadow-2xl transition-all min-w-[850px] mb-5"
+                     >
+                        <CardHeader>
+                           <CardTitle className="text-xl font-bold">
+                              {idea.ideaName}
+                           </CardTitle>
+                           <CardDescription className="text-sm text-gray-600">
+                              {idea.ideaDescription}
+                           </CardDescription>
+                        </CardHeader>
+                        {idea.ideaURL && (
+                           <CardContent>
+                              <div
+                                 className="text-blue-500 underline"
+                                 dangerouslySetInnerHTML={{
+                                    __html: `${idea.ideaURL}`,
+                                 }}
+                              />
+                           </CardContent>
+                        )}
+                     </Card>
+                  ))}
             </div>
          ) : (
             <div className="text-center text-lg text-gray-500">
-               No ideas created
+               No Figma ideas created
             </div>
          )}
       </div>
