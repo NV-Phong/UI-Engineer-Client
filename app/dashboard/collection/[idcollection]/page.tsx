@@ -2,13 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-   Card,
-   CardContent,
-   CardDescription,
-   CardHeader,
-   CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import useGetUILibrary from "@/hooks/workspace/uilibrary/get-uilibrary";
@@ -16,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { FaReact, FaVuejs, FaAngular } from "react-icons/fa";
 import { SiFlutter, SiTailwindcss, SiCss3, SiBootstrap } from "react-icons/si";
 import { Button } from "@/components/ui/button";
+import Cookies from "js-cookie"; // Import js-cookie
 
 type UILibrary = {
    _id: string;
@@ -28,44 +23,16 @@ type UILibrary = {
 };
 
 const frameworks = [
-   {
-      value: "Next.JS",
-      label: "Next.JS",
-      icon: <FaReact className="text-[#61DAFB]" />,
-   },
-   {
-      value: "Flutter",
-      label: "Flutter",
-      icon: <SiFlutter className="text-[#02569B]" />,
-   },
-   {
-      value: "Vue.JS",
-      label: "Vue.JS",
-      icon: <FaVuejs className="text-[#42B883]" />,
-   },
-   {
-      value: "Angular",
-      label: "Angular",
-      icon: <FaAngular className="text-[#DD0031]" />,
-   },
+   { value: "Next.JS", label: "Next.JS", icon: <FaReact className="text-[#61DAFB]" /> },
+   { value: "Flutter", label: "Flutter", icon: <SiFlutter className="text-[#02569B]" /> },
+   { value: "Vue.JS", label: "Vue.JS", icon: <FaVuejs className="text-[#42B883]" /> },
+   { value: "Angular", label: "Angular", icon: <FaAngular className="text-[#DD0031]" /> },
 ];
 
 const styles = [
-   {
-      value: "Tailwind",
-      label: "Tailwind",
-      icon: <SiTailwindcss className="text-[#38B2AC]" />,
-   },
-   {
-      value: "CSS",
-      label: "CSS",
-      icon: <SiCss3 className="text-[#1572B6]" />,
-   },
-   {
-      value: "Bootstrap",
-      label: "Bootstrap",
-      icon: <SiBootstrap className="text-[#7952B3]" />,
-   },
+   { value: "Tailwind", label: "Tailwind", icon: <SiTailwindcss className="text-[#38B2AC]" /> },
+   { value: "CSS", label: "CSS", icon: <SiCss3 className="text-[#1572B6]" /> },
+   { value: "Bootstrap", label: "Bootstrap", icon: <SiBootstrap className="text-[#7952B3]" /> },
 ];
 
 export default function Page({
@@ -116,6 +83,12 @@ export default function Page({
    const getStyleIcon = (style: string) =>
       styles.find((s) => s.value === style)?.icon || null;
 
+   const handleCardClick = (id: string) => {
+      // Save the clicked library ID into a cookie
+      Cookies.set("IDUILibrary", id, { expires: 7 }); // Cookie expires in 7 days
+      router.push(`/dashboard/ui-library/${id}`);
+   };
+
    return (
       <div className="space-y-4">
          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -123,9 +96,7 @@ export default function Page({
                <Card
                   key={library._id}
                   className="transition-all duration-200 hover:shadow-lg hover:scale-[1.02] cursor-pointer bg-background"
-                  onClick={() =>
-                     router.push(`/dashboard/ui-library/${library._id}`)
-                  }
+                  onClick={() => handleCardClick(library._id)} // Use the new click handler
                >
                   <CardHeader>
                      <div className="flex items-center justify-between">
@@ -162,7 +133,6 @@ export default function Page({
                               {getStyleIcon(library.style)}
                               <span className="text-xs">{library.style}</span>
                            </span>
-                           {/* <Button variant={"outline"}>View</Button> */}
                         </div>
                      </div>
                   </CardContent>
