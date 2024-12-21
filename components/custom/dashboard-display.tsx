@@ -100,7 +100,7 @@ const DashboardDisplay = ({ children }: { children: React.ReactNode }) => {
                   <div className="">
                      <div className="">
                         <Tabs defaultValue="all" className="m-3">
-                           <TabsList>
+                           <TabsList className="hidden">
                               <TabsTrigger value="all">All</TabsTrigger>
                               <TabsTrigger value="create">Create</TabsTrigger>
                               <TabsTrigger value="shapes">

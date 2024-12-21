@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { FaReact, FaAndroid, FaVuejs, FaAngular } from "react-icons/fa"; // Import icon từ react-icons
+import { FaReact, FaAndroid, FaVuejs, FaAngular, FaHtml5 } from "react-icons/fa"; // Import icon từ react-icons
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,12 @@ import { SiFlutter } from "react-icons/si";
 
 const frameworks = [
    {
+      value: "HTML",
+      label: "HTML",
+      icon: <FaHtml5 color="#42B883" />,
+      disabled: false,
+   },
+   {
       value: "Next.JS",
       label: "Next.JS",
       icon: <FaReact color="#61DAFB" />,
@@ -32,14 +38,9 @@ const frameworks = [
       value: "Flutter",
       label: "Flutter",
       icon: <SiFlutter color="#02569B" />,
-      disabled: false,
-   },
-   {
-      value: "Vue.JS",
-      label: "Vue.JS",
-      icon: <FaVuejs color="#42B883" />,
       disabled: true,
    },
+
    {
       value: "Angular",
       label: "Angular",
