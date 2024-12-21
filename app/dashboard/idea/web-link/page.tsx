@@ -48,7 +48,7 @@ export default function WebLink() {
                   .map((idea) => (
                      <Card
                         key={idea._id}
-                        className="shadow-lg hover:shadow-2xl transition-all mb-96"
+                        className="shadow-lg hover:shadow-2xl transition-all mb-96 bg-background"
                      >
                         <CardHeader>
                            <CardTitle className="text-xl font-bold">

@@ -122,7 +122,7 @@ export default function Page({
             {data?.map((library: UILibrary) => (
                <Card
                   key={library._id}
-                  className="transition-all duration-200 hover:shadow-lg hover:scale-[1.02] cursor-pointer"
+                  className="transition-all duration-200 hover:shadow-lg hover:scale-[1.02] cursor-pointer bg-background"
                   onClick={() =>
                      router.push(`/dashboard/ui-library/${library._id}`)
                   }

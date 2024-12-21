@@ -91,7 +91,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             icon: BookOpen,
             items: [
                { title: "Figma", url: "/dashboard/idea/figma" },
-               { title: "Graphics", url: "/dashboard/idea/graphics" },
+               // { title: "Graphics", url: "/dashboard/idea/graphics" },
                { title: "Web Link", url: "/dashboard/idea/web-link" },
             ],
          },

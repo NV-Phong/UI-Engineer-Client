@@ -43,7 +43,7 @@ export default function Figma() {
                   .map((idea) => (
                      <Card
                         key={idea._id}
-                        className="shadow-lg hover:shadow-2xl transition-all min-w-[850px] mb-5"
+                        className="shadow-lg hover:shadow-2xl transition-all min-w-[850px] mb-5 bg-background"
                      >
                         <CardHeader>
                            <CardTitle className="text-xl font-bold">

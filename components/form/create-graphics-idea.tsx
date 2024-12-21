@@ -58,7 +58,7 @@ export function CreateIdeaGraphicsPopover() {
          <PopoverTrigger asChild>
             <Button variant="outline">Create Idea</Button>
          </PopoverTrigger>
-         <PopoverContent side="left" align="center" className="w-80 ml-2 mt-32 overflow-y-auto max-h-[650px] scrollbar-hide">
+         <PopoverContent side="left" align="center" className="bg-background w-80 ml-2 mt-32 overflow-y-auto max-h-[650px] scrollbar-hide">
             <form onSubmit={handleSubmit} className="grid gap-4">
                <div className="space-y-2">
                   <h4 className="font-medium leading-none">Create New Idea</h4>

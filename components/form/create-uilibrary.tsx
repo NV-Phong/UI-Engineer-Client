@@ -42,7 +42,7 @@ export function CreateUILibraryPopover() {
          <PopoverTrigger asChild>
             <Button variant="outline">Create UI Library</Button>
          </PopoverTrigger>
-         <PopoverContent className="w-80 mr-4">
+         <PopoverContent className="w-80 mr-4 bg-background">
             <form onSubmit={handleSubmit} className="grid gap-4">
                <div className="space-y-2">
                   <h4 className="font-medium leading-none">

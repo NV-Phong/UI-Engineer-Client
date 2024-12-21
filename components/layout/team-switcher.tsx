@@ -100,7 +100,7 @@ export function TeamSwitcher({
                   </SidebarMenuButton>
                </DropdownMenuTrigger>
                <DropdownMenuContent
-                  className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                  className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg bg-background"
                   align="start"
                   side={isMobile ? "bottom" : "bottom"}
                   sideOffset={4}
