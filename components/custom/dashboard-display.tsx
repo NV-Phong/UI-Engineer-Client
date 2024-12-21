@@ -96,9 +96,9 @@ const DashboardDisplay = ({ children }: { children: React.ReactNode }) => {
                   </div>
                </header>
 
-               <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                  <div className="grid gap-4 md:grid-cols-10">
-                     <div className="aspect-video rounded-xl bg-muted/20 w-full md:col-span-7">
+               <div className="">
+                  <div className="">
+                     <div className="">
                         <Tabs defaultValue="all" className="m-3">
                            <TabsList>
                               <TabsTrigger value="all">All</TabsTrigger>

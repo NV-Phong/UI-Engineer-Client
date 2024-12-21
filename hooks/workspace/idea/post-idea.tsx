@@ -72,7 +72,7 @@ const useCreateIdea = () => {
 
          const formattedName = ideaName.toLowerCase().replace(/\s+/g, "-");
 
-         router.push(`/dashboard/idea/${formattedName}`);
+         // router.push(`/dashboard/idea/${formattedName}`);
 
          // Reset the state values
          resetState();
