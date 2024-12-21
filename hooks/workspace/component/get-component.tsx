@@ -11,7 +11,8 @@ type Component = {
    componentName: string;
    componentDescription: string;
    language: string;
-   code: string;
+   codeHTML: string;
+   codeCSS: string;
    idea: string[];
    IDUILibrary: string;
 };
