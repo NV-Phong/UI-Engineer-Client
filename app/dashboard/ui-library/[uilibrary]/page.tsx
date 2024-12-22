@@ -47,7 +47,8 @@ export default function UILibrary({
     <div className="container mx-auto">
       <UploadCode />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 w-full"> */}
+      <div className="">
         {data?.map((component) => (
           <Card key={component._id} className="overflow-hidden">
             <CardHeader>

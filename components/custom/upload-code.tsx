@@ -67,7 +67,7 @@ export default function UploadCode() {
    };
 
    return (
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 overflow-y-auto">
          <Card>
             <CardHeader>
                <CardTitle>Upload HTML and CSS files</CardTitle>
@@ -183,7 +183,7 @@ export default function UploadCode() {
                         <PopoverContent
                            side="bottom"
                            align="start"
-                           className="w-80 bg-background"
+                           className="bg-background"
                         >
                            <div className="space-y-2">
                               <h4 className="font-medium leading-none">
